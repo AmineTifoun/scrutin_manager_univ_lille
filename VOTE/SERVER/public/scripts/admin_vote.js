@@ -1,0 +1,1 @@
+(()=>{let e=0;const t=document.getElementsByClassName("main")[0],n=document.getElementsByClassName("alter")[0],s=document.getElementsByClassName("actifs")[0],l=io("http://localhost:8500");l.emit("admin_ask"),l.on("admin_res",(e=>{e?n.style.display="none":(t.style.display="none",n.style.display="block")})),l.on("update_nb_connexion",(t=>{console.log(t),s.textContent=t,e=t}))})();

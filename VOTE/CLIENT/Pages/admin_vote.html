@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN_PAGE</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="main">
+        <H1>VOTE ADMIN BOARD</H1>
+        <p>YOU ARE ACTUALLY THE ADMIN OF THIS VOTE SESSION !</p>
+        <div class="data">
+            <div>
+                <h3>
+                    Active Persons :
+                </h3>
+                <p class="actifs">0</p>
+            </div>
+            <div>
+                <h3>Participants :</h3>
+                <p class="actifs">0</p>
+            </div>
+        </div>
+            <form id="voteForm">
+                <label for="comment">Votre avis :</label>
+                <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Le Text a voter est ..."></textarea>
+                <br><br>
+                <button type="submit">START THE SESSION</button>
+            </form>
+    </div>
+    <div class="alter">
+        <p>NOT AUTHORIZED , THERE IS ALEADY AN ADMIN </p>
+    </div>
+</body>
+</html>
