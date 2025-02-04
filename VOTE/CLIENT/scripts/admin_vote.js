@@ -2,7 +2,7 @@ let nb_connexions = 0  ;
 const main = document.getElementsByClassName("main")[0];
 const alter = document.getElementsByClassName("alter")[0];
 const actifs = document.getElementsByClassName("actifs")[0] ;/* CONATAINS NUMBER OF ACTIF CLIENT */
-
+const text_avoter = document.getElementById("voteForm") ;
 const socket = io("http://localhost:8500");
 
 // Emit the request to check if there is already an admin
@@ -24,3 +24,10 @@ socket.on("update_nb_connexion" , (data)=>{
     actifs.textContent = data ; 
     nb_connexions = data ;
 } )
+
+text_avoter.addEventListener("submit" , (event)=>{
+    event.preventDefault() ;
+    console.log("VOTE LANCE") ; 
+    socket.emit("vote_activated" , event.target.elements.textToVote.value) ; 
+})
+

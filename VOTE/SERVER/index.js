@@ -38,13 +38,22 @@ io.on("connection", (socket) => {
 
     const check = setInterval(()=>{
         socket.emit("update_nb_connexion" , admin.nb_connexions) ; 
-        console.log("nb connexions recense :"+admin.nb_connexions)
+        /*console.log("nb connexions recense :"+admin.nb_connexions)*/
     } , 200) ;
 
     socket.on("ask_vote_session" , ()=>{
-        console.log("asking if vote opened")
-        socket.emit("is_vote_opened" , admin.isVoteOpened) ;
+        const data = {
+            state :admin.isVoteOpened ,
+            text : admin.textVote
+        }
+        
+        socket.emit("is_vote_opened" , data) ;
     })
+
+    socket.on("vote_activated" , (text)=>{
+        admin.setText(text) ; 
+        admin.startVote() ;
+      })
 
     socket.on("client_disconnecting" , ()=>{
         console.log("nb connexions :"+admin.nb_connexions) ;
@@ -52,6 +61,14 @@ io.on("connection", (socket) => {
         admin.clientRemove() ;
         console.log("nb connexions :"+admin.nb_connexions) ;
 
+    })  
+
+
+
+
+    socket.on("vote" , (vote)=>{
+        admin.set_votes(vote) ;
+        console.log(admin.RESULT) ; 
     })
 
 });
